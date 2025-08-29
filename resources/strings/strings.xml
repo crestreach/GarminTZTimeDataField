@@ -1,0 +1,14 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+    <string id="AppName">TZTime Data Field</string>
+    <string id="AppDeveloper">CrestReach</string>
+
+    <string id="label">TZTime Data Field</string>
+    
+    <string id="tzOffsetTitle">Time Zone Offset</string>
+    <string id="tzOffsetPrompt">Time Zone Offset (hours from UTC)</string>
+    <string id="tzOffsetError">Wrong Time Zone Offset</string>
+    
+    <string id="displaySecsTitle">Display seconds</string>
+    <string id="displaySecsPrompt">Display seconds</string>
+    <string id="displaySecsError">Wrong Value</string>
+</strings>

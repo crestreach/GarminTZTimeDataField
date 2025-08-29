@@ -1,0 +1,4 @@
+<properties>
+    <property id="tzOffset" type="number">0</property>
+    <property id="displaySecs" type="boolean">true</property>
+</properties>

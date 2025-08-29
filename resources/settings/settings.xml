@@ -1,0 +1,8 @@
+<settings>
+    <setting propertyKey="@Properties.tzOffset" title="@Strings.tzOffsetTitle" prompt="@Strings.tzOffsetPrompt">
+        <settingConfig type="numeric" min="-12" max="14" errorMessage="@Strings.tzOffsetError" />
+    </setting>
+    <setting propertyKey="@Properties.displaySecs" title="@Strings.displaySecsTitle" prompt="@Strings.displaySecsPrompt">
+        <settingConfig type="boolean" errorMessage="@Strings.displaySecsError" />
+    </setting>
+</settings>
