@@ -10,4 +10,12 @@
     <string id="displaySecsTitle">Display seconds</string>
     <string id="displaySecsPrompt">Display seconds</string>
     <string id="displaySecsError">Wrong Value</string>
+
+    <string id="yOffsetLabelTitle">Y-axis offset of the label</string>
+    <string id="yOffsetLabelPrompt">Y-axis offset of the label</string>
+    <string id="yOffsetLabelError">Wrong y-axis offset of the label</string>
+
+    <string id="yOffsetValueTitle">Y-axis offset of the time</string>
+    <string id="yOffsetValuePrompt">Y-axis offset of the time</string>
+    <string id="yOffsetValueError">Wrong y-axis offset of the time</string>
 </strings>

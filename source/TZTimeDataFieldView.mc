@@ -10,6 +10,8 @@ class TZTimeDataFieldView extends WatchUi.DataField {
     var tzOffset as Number = 0;
     var displaySecs as Boolean = true;
     var lastPropsReloadTime;
+    var yOffsetLabel = 0;
+    var yOffsetValue = 0;
 
     function initialize() {
         DataField.initialize();
@@ -54,13 +56,16 @@ class TZTimeDataFieldView extends WatchUi.DataField {
         dc.clear();
         dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
 
-        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 24, Graphics.FONT_XTINY, offsetText, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 9, Graphics.FONT_MEDIUM, timeText, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 24 + yOffsetLabel, Graphics.FONT_XTINY, offsetText, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 9 + yOffsetValue, Graphics.FONT_MEDIUM, timeText, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function loadProps() as Void {
         tzOffset = Properties.getValue("tzOffset");
         displaySecs = Properties.getValue("displaySecs");
+        yOffsetLabel = Properties.getValue("yOffsetLabel");
+        yOffsetValue = Properties.getValue("yOffsetValue");
+
         lastPropsReloadTime = Time.now();
     }
 

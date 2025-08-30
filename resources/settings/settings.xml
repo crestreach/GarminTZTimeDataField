@@ -5,4 +5,10 @@
     <setting propertyKey="@Properties.displaySecs" title="@Strings.displaySecsTitle" prompt="@Strings.displaySecsPrompt">
         <settingConfig type="boolean" errorMessage="@Strings.displaySecsError" />
     </setting>
+    <setting propertyKey="@Properties.yOffsetLabel" title="@Strings.yOffsetLabelTitle" prompt="@Strings.yOffsetLabelPrompt">
+        <settingConfig type="numeric" min="-10" max="10" errorMessage="@Strings.yOffsetLabelError" />
+    </setting>
+    <setting propertyKey="@Properties.yOffsetValue" title="@Strings.yOffsetValueTitle" prompt="@Strings.yOffsetValuePrompt">
+        <settingConfig type="numeric" min="-10" max="10" errorMessage="@Strings.yOffsetValueError" />
+    </setting>
 </settings>
