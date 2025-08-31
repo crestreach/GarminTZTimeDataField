@@ -52,12 +52,35 @@ class TZTimeDataFieldView extends WatchUi.DataField {
             fgColor = Graphics.COLOR_BLACK;
         }
         
+
+
+        var w = dc.getWidth();
+        var h = dc.getHeight();
+
+        var font = Graphics.FONT_SMALL;
+        
+        if (dc.getFontHeight(Graphics.FONT_MEDIUM) <= h - 8 - dc.getFontHeight(Graphics.FONT_XTINY)
+                && dc.getTextWidthInPixels("22:22:22", Graphics.FONT_MEDIUM) + 8 <= w) {
+            font = Graphics.FONT_MEDIUM;
+        }
+
+        if (dc.getFontHeight(Graphics.FONT_LARGE) <= h - 8 - dc.getFontHeight(Graphics.FONT_XTINY)
+                && dc.getTextWidthInPixels("22:22:22", Graphics.FONT_LARGE) + 8 <= w) {
+            font = Graphics.FONT_LARGE;
+        }
+
+        var yTime = 
+            8 + dc.getFontHeight(Graphics.FONT_XTINY) - 4
+                + (dc.getHeight() - (8 + dc.getFontHeight(Graphics.FONT_XTINY) - 4 + 4)) / 2 
+                - dc.getFontHeight(font) / 2;
+        
         dc.setColor(getBackgroundColor(), getBackgroundColor());
         dc.clear();
         dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
 
-        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 24 + yOffsetLabel, Graphics.FONT_XTINY, offsetText, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2 - 9 + yOffsetValue, Graphics.FONT_MEDIUM, timeText, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(dc.getWidth() / 2, 8 + yOffsetLabel, Graphics.FONT_XTINY, offsetText, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(dc.getWidth() / 2, yTime + yOffsetValue, font, timeText, Graphics.TEXT_JUSTIFY_CENTER);
+
     }
 
     private function loadProps() as Void {
