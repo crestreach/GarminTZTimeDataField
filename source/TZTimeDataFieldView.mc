@@ -7,10 +7,12 @@ import Toybox.Application.Properties;
 
 class TZTimeDataFieldView extends WatchUi.SimpleDataField {
 
+
     var tzOffset as Number = 0;
     var displaySecs as Boolean = true;
-    var lastPropsReloadTime;
-    var tzInLabel = true;
+    var lastPropsReloadTime as Time.Moment = Time.now();
+    var tzInLabel as Boolean = true;
+    var initialized as Boolean = false;
 
     function initialize() {
         SimpleDataField.initialize();
@@ -21,19 +23,21 @@ class TZTimeDataFieldView extends WatchUi.SimpleDataField {
             var offsetText = "UTC" + offsetSign + tzOffset;
             label = offsetText;
         } else {
-            label = loadResource(Rez.Strings.label);
+            label = WatchUi.loadResource(Rez.Strings.label) as String;
         }
+
+        initialized = true;
     }
 
     function compute(info) {
-        if (lastPropsReloadTime.add(new Time.Duration(10)).compare(Time.now()) < 0) {
+        if (!initialized || lastPropsReloadTime.add(new Time.Duration(10)).compare(Time.now()) < 0) {
             // refresh properties every 10 seconds
             loadProps();
         }
 
-        var offsetSign = (tzOffset >= 0) ? "+" : "";
-		var offsetText = "UTC" + offsetSign + tzOffset;
-        label = offsetText;     //setting the label after initialization won't work, but might be added in future
+        // var offsetSign = (tzOffset >= 0) ? "+" : "";
+        // var offsetText = "UTC" + offsetSign + tzOffset;
+        // label = offsetText;     //setting the label after initialization won't work, but might be added in future
 
         var offsetSecs = tzOffset * 3600;
         var moment = Time.now();
@@ -41,10 +45,10 @@ class TZTimeDataFieldView extends WatchUi.SimpleDataField {
         var newMoment = moment.add(duration);
         var utcInfo = Gregorian.utcInfo(newMoment, Time.FORMAT_SHORT);
 
-		// Format the time
-		var hours = utcInfo.hour.format("%02d");
-		var mins  = utcInfo.min.format("%02d");
-		var timeText = hours + ":" + mins;
+        // Format the time
+        var hours = utcInfo.hour.format("%02d");
+        var mins  = utcInfo.min.format("%02d");
+        var timeText = hours + ":" + mins;
         if (displaySecs) {
             var secs  = utcInfo.sec.format("%02d");
             timeText = timeText + ":" + secs;
@@ -54,9 +58,27 @@ class TZTimeDataFieldView extends WatchUi.SimpleDataField {
     }
 
     private function loadProps() as Void {
-        tzOffset = Properties.getValue("tzOffset");
-        displaySecs = Properties.getValue("displaySecs");
-        tzInLabel = Properties.getValue("tzInLabel");
+        var tzOffsetValue = Properties.getValue("tzOffset");
+        if (tzOffsetValue != null && tzOffsetValue instanceof Number) {
+            tzOffset = tzOffsetValue as Number;
+        } else {
+            tzOffset = 0;
+        }
+
+        var displaySecsValue = Properties.getValue("displaySecs");
+        if (displaySecsValue != null && displaySecsValue instanceof Boolean) {
+            displaySecs = displaySecsValue as Boolean;
+        } else {
+            displaySecs = true;
+        }
+        
+        var tzInLabelValue = Properties.getValue("tzInLabel");
+        if (tzInLabelValue != null && tzInLabelValue instanceof Boolean) {
+            tzInLabel = tzInLabelValue as Boolean;
+        } else {
+            tzInLabel = true;
+        }
+
 
         lastPropsReloadTime = Time.now();
     }
