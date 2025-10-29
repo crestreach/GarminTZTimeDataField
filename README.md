@@ -7,3 +7,9 @@ TZTime Data Field can be configured to display current time in a specific time z
 
 1.0.1:
 - made the field a SimpleDataField, which should fix displaying issues on some devices
+
+1.0.2:
+- added support for new devices
+
+1.0.3:
+- added extra initializations, checks, module specifications, as well as type validation in code to avoid potential crashes on some devices and versions
